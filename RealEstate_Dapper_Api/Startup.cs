@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RealEstate_Dapper_Api.Models.DapperContext;
+using RealEstate_Dapper_Api.Repositories.CategoryRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +28,8 @@ namespace RealEstate_Dapper_Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddTransient<Context>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();   
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

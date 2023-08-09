@@ -1,0 +1,30 @@
+﻿using RealEstate_Dapper_Api.Dtos.CategoryDtos;
+using RealEstate_Dapper_Api.Models.DapperContext;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Dapper;
+
+namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
+{
+    public class CategoryRepository : ICategoryRepository
+    {
+        private readonly Context _context;
+
+        public CategoryRepository(Context context)
+        {
+            _context = context;
+        }
+
+        public async Task<List<ResultCategoryDto>> GetAllCategoryAsync()
+        {
+            string quary = "Select * From Category";
+            using(var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<ResultCategoryDto>(quary);
+                return values.ToList(); 
+            }
+        }
+    }
+}
