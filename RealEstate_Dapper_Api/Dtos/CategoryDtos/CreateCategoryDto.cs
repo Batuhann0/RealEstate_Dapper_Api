@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace RealEstate_Dapper_Api.Dtos.CategoryDtos
 {
-    public class CreateCatoryDto
+    public class CreateCategoryDto
     {
+        public string CategoryName { get; set; }
     }
 }

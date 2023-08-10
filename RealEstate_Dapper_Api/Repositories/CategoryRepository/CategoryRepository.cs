@@ -17,14 +17,34 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
             _context = context;
         }
 
+        #region Listeleme
         public async Task<List<ResultCategoryDto>> GetAllCategoryAsync()
         {
             string quary = "Select * From Category";
-            using(var connection = _context.CreateConnection())
+            using (var connection = _context.CreateConnection())
             {
+                //QueryAsync listeleme için kullanılır
                 var values = await connection.QueryAsync<ResultCategoryDto>(quary);
-                return values.ToList(); 
+                return values.ToList();
             }
         }
+        #endregion
+
+        #region Ekleme
+        public async void CreateCategoryDto(CreateCategoryDto categoryDto)
+        {
+            string quary = "insert into Category (CategoryName,CategoryStatus) values (@categoryName,@categoryStatus)";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@categoryName", categoryDto.CategoryName);
+            parameters.Add("@categoryStatus", true);
+            using (var connection = _context.CreateConnection())
+            {
+                //ekleme,silme,güncelleme işlemi için ExecuteAsync kullanılır
+                await connection.ExecuteAsync(quary, parameters);
+
+            }
+        }
+        #endregion
     }
 }
