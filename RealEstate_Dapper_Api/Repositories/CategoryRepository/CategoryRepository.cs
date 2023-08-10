@@ -31,7 +31,7 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
         #endregion
 
         #region Ekleme
-        public async void CreateCategoryDto(CreateCategoryDto categoryDto)
+        public async void CreateCategory(CreateCategoryDto categoryDto)
         {
             string quary = "insert into Category (CategoryName,CategoryStatus) values (@categoryName,@categoryStatus)";
 
@@ -44,6 +44,43 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepository
                 await connection.ExecuteAsync(quary, parameters);
 
             }
+        }
+
+        #endregion
+
+        #region Sil
+        public async void DeleteCategory(int id)
+        {
+            string quary = "Delete from Category where CategoryID=@categoryID";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@categoryID", id);
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(quary, parameters);
+            }
+        }
+        #endregion
+        #region Güncelle
+
+        public async void UpdateCategory(UpdateCategoryDto updateCategoryDto)
+        {
+            string quary = "update Category set CategoryName=@categoryName,CategoryStatus=@categoryStatus where CategoryID=@categoryID";
+
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@categoryName", updateCategoryDto.CategoryName);
+            parameters.Add("@categoryStatus", updateCategoryDto.CategoryStatus);
+            parameters.Add("@categoryID", updateCategoryDto.CategoryID);
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(quary, parameters);
+            }
+        }
+
+        public async Task<GetByIDCategoryDto> GetCategory(int id)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }
