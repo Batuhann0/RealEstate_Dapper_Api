@@ -21,7 +21,8 @@ namespace RealEstate_Dapper_UI.ViewComponents.HomePage
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var client = _httpClientFactory.CreateClient(); //istemci örneği oluşturduk
+            //istemci örneği oluşturduk bu apiye istek göndermek için
+            var client = _httpClientFactory.CreateClient(); 
 
             var responseMessage = await client.GetAsync("http://localhost:5353/api/Product/ProductListWithCategory");
 
