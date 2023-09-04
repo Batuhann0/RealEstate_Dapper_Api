@@ -15,11 +15,12 @@
                     <div class="col-lg-4 col-md-6">
                         <a href="property-single.html">
                             <div class="box16">
-                                <div class="rentext-listing-category"><span>Buy</span><span>Rent</span></div>
+                                <div class="rentext-listing-category"><span>@item.Type</span><span>@item.CategoryName</span></div>
                                 <img class="img-fluid" src="@item.image" alt="">
                                 <div class="box-content">
-                                    <h3 class="title">₺@item.price</h3>
-                                    <span class="post">@item.district - @item.city</span>
+                                    <h3 class="title">₺@item.Price</h3>
+                                    <span class="post">@item.Address <br />
+                                    @item.District - @item.City</span>
                                 </div>
                             </div>
                         </a>
