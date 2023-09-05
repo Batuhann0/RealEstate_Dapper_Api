@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RealEstate_Dapper_Api.Models.DapperContext;
+using RealEstate_Dapper_Api.Repositories.ButtomGridRepositories;
 using RealEstate_Dapper_Api.Repositories.CategoryRepository;
 using RealEstate_Dapper_Api.Repositories.ProductRepository;
 using RealEstate_Dapper_Api.Repositories.ServiceRepository;
@@ -37,6 +38,7 @@ namespace RealEstate_Dapper_Api
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IWhoWeAreRepository, WhoWeAreDetailRepository>();
             services.AddTransient<IServiceRepository, ServiceRepository>();
+            services.AddTransient<IBottomGridRepository, BottomGridRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
