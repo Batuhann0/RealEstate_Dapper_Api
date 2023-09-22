@@ -13,6 +13,7 @@ using RealEstate_Dapper_Api.Repositories.CategoryRepository;
 using RealEstate_Dapper_Api.Repositories.PopulerLocationRepositories;
 using RealEstate_Dapper_Api.Repositories.ProductRepository;
 using RealEstate_Dapper_Api.Repositories.ServiceRepository;
+using RealEstate_Dapper_Api.Repositories.TestimonialRepositories;
 using RealEstate_Dapper_Api.Repositories.WhoWeAreRepository;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,7 @@ namespace RealEstate_Dapper_Api
             services.AddTransient<IServiceRepository, ServiceRepository>();
             services.AddTransient<IBottomGridRepository, BottomGridRepository>();
             services.AddTransient<IPopulerLocationRepository, PopulerLocationRepository>();
+            services.AddTransient<ITestimonialRepository, TestimonialRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
